@@ -69,7 +69,7 @@
       border-radius: 50%;
       pointer-events: none;
     }
-    .hidden { display: none; }
+    .hidden { display: none !important; }
     .center { text-align: center; }
     h1, h2, h3 { margin-top: 0; }
     h1 { font-size: 34px; letter-spacing: -0.5px; }
@@ -361,7 +361,7 @@
       <div class="card">
         <div class="question-number" id="questionTitle"></div>
         <div class="question-text" id="questionText"></div>
-        <img id="questionImage" class="question-image hidden" alt="Ilustrasi soal" />
+        <img id="questionImage" class="question-image hidden" alt="Ilustrasi soal" onerror="this.classList.add('hidden'); this.style.display='none';" />
         <div id="options"></div>
         <div class="actions">
           <button class="secondary" onclick="prevQuestion()">Sebelumnya</button>
@@ -483,12 +483,14 @@
       document.getElementById("questionText").innerText = q.text;
 
       const imageEl = document.getElementById("questionImage");
-      if (q.image) {
+      if (q.image && q.image.trim() !== "") {
         imageEl.src = q.image;
+        imageEl.style.display = "block";
         imageEl.classList.remove("hidden");
       } else {
-        imageEl.classList.add("hidden");
         imageEl.removeAttribute("src");
+        imageEl.style.display = "none";
+        imageEl.classList.add("hidden");
       }
 
       const optionsDiv = document.getElementById("options");
