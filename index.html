@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CBT SAS 2 Seni Rupa Kelas 6</title>
+  <title>CBT SAT Seni Rupa Kelas 6</title>
   <style>
     * { box-sizing: border-box; }
     :root {
@@ -75,11 +75,41 @@
     h1 { font-size: 34px; letter-spacing: -0.5px; }
     h2 { color: #2f3a34; }
     .school-title {
-      font-size: 14px;
-      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto 24px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(152, 126, 96, 0.18);
+      box-shadow: 0 10px 24px rgba(61, 42, 24, 0.07);
       color: var(--muted);
-      margin-bottom: 18px;
+      line-height: 1.45;
+    }
+    .school-title .school-kop {
+      font-size: 12px;
+      letter-spacing: 0.7px;
       text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .school-title .school-name {
+      font-size: 20px;
+      letter-spacing: -0.2px;
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .school-title .school-address {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    #accessPage, #loginPage, #resultPage {
+      max-width: 900px;
+      margin: 12px auto 18px;
+    }
+    #accessPage h1, #loginPage h1 {
+      margin-bottom: 8px;
     }
     .hero-badge {
       display: inline-block;
@@ -239,7 +269,11 @@
       border: 1px solid rgba(152,126,96,0.18);
     }
     .summary-item strong { display: block; font-size: 22px; margin-top: 4px; }
-    .result-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
     .note {
       background: #fff5e8;
       border: 1px solid #f0cf9f;
@@ -273,9 +307,15 @@
 <body>
   <div class="container">
     <div id="accessPage" class="card center">
-      <div class="hero-badge">Akses Ujian</div>
-      <div class="subject-mark">CBT SAS 2 Seni Rupa</div>
-      <h1>CBT SAS 2 Seni Rupa</h1>
+      <div class="school-title">
+        <div class="school-kop">Pemerintah Kabupaten Sampang · Dinas Pendidikan</div>
+        <div class="school-name">UPTD SD Negeri Tamansareh 1</div>
+        <div class="school-address">
+          Desa Tamansareh, Kecamatan Sampang · Sampang 69252<br>
+          sdntamansareh1720@gmail.com
+        </div>
+      </div>
+      <h1>CBT SAT Seni Rupa</h1>
       <h2>Kelas 6 SD</h2>
       <p>Masukkan kode akses untuk melanjutkan ke halaman identitas siswa.</p>
       <div class="password-wrapper">
@@ -293,14 +333,14 @@
 
     <div id="loginPage" class="card center hidden">
       <div class="school-title">
-        PEMERINTAH KABUPATEN SAMPANG<br>
-        DINAS PENDIDIKAN<br>
-        UPTD SD NEGERI TAMANSAREH 1<br>
-        DESA TAMANSAREH, KECAMATAN SAMPANG
+        <div class="school-kop">Pemerintah Kabupaten Sampang · Dinas Pendidikan</div>
+        <div class="school-name">UPTD SD Negeri Tamansareh 1</div>
+        <div class="school-address">
+          Desa Tamansareh, Kecamatan Sampang · Sampang 69252<br>
+          sdntamansareh1720@gmail.com
+        </div>
       </div>
-      <div class="hero-badge">Identitas Peserta</div>
-      <div class="subject-mark">Nuansa visual dibuat lebih artistik</div>
-      <h1>CBT SAS 2 Seni Rupa</h1>
+      <h1>CBT SAT Seni Rupa</h1>
       <h2>Kelas 6 SD</h2>
       <p>Waktu: 90 menit | Jumlah soal: <span id="totalQuestionText"></span></p>
       <input id="studentName" type="text" placeholder="Nama siswa" autocomplete="off" />
@@ -312,7 +352,7 @@
     <div id="examPage" class="hidden">
       <div class="card topbar">
         <div>
-          <h2>CBT SAS 2 Seni Rupa</h2>
+          <h2>CBT SAT Seni Rupa</h2>
           <div class="meta" id="studentInfo"></div>
         </div>
         <div class="badge" id="timer">90:00</div>
@@ -341,18 +381,10 @@
       <h1>Terima kasih</h1>
       <p id="resultIdentity"></p>
       <div class="result-box" id="scoreBox"></div>
-      <div class="summary-grid">
-        <div class="summary-item">Jawaban Benar<strong id="correctCount">0</strong></div>
-        <div class="summary-item">Jawaban Salah<strong id="wrongCount">0</strong></div>
-        <div class="summary-item">Belum Dijawab<strong id="blankCount">0</strong></div>
-      </div>
       <p class="status" id="sheetStatus">Mengirim hasil ke Google Sheet...</p>
       <div class="result-actions">
-        <button onclick="toggleReview()">Lihat Kunci Jawaban</button>
         <button onclick="window.print()">Cetak Hasil</button>
       </div>
-      <div id="reviewSection" class="hidden review-list"></div>
-      <div class="footer-note">Template tetap mirip versi sebelumnya, tetapi warna dan nuansa sudah diubah agar lebih cocok untuk tema Seni Rupa.</div>
     </div>
   </div>
 
@@ -546,38 +578,10 @@
       document.getElementById("resultPage").classList.remove("hidden");
       document.getElementById("resultIdentity").innerText = `Nama: ${studentName} | No. Absen: ${studentNumber} | Kelas: ${studentClass}`;
       document.getElementById("scoreBox").innerHTML = `Nilai: ${score}`;
-      document.getElementById("correctCount").innerText = correct;
-      document.getElementById("wrongCount").innerText = wrong;
-      document.getElementById("blankCount").innerText = blank;
-      buildReview();
+
       sendToGoogleSheet(resultData);
     }
 
-    function buildReview() {
-      const reviewSection = document.getElementById("reviewSection");
-      reviewSection.innerHTML = "";
-      questions.forEach((q, i) => {
-        const userAnswer = answers[i] || "-";
-        const isCorrect = answers[i] === q.answer;
-        const item = document.createElement("div");
-        item.className = `review-item ${isCorrect ? "correct" : "wrong"}`;
-        item.innerHTML = `
-          <div class="review-title">Soal ${i + 1}</div>
-          <div class="review-meta">
-            <div><strong>Pertanyaan:</strong> ${q.text.replace(/
-/g, '<br>')}</div>
-            <div><strong>Jawaban kamu:</strong> ${userAnswer}${userAnswer !== '-' ? `. ${q.options[userAnswer] || ''}` : ''}</div>
-            <div><strong>Kunci jawaban:</strong> ${q.answer}. ${q.options[q.answer]}</div>
-            <div><strong>Status:</strong> ${isCorrect ? 'Benar' : 'Perlu diperbaiki'}</div>
-          </div>
-        `;
-        reviewSection.appendChild(item);
-      });
-    }
-
-    function toggleReview() {
-      document.getElementById("reviewSection").classList.toggle("hidden");
-    }
 
     function sendToGoogleSheet(data) {
       const statusEl = document.getElementById("sheetStatus");
