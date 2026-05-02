@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBT SAS 2 Seni Rupa Kelas 6</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --primary: #4b6b43;
+      --primary-dark: #2f4a2b;
+      --accent: #c9734f;
+      --accent-soft: #f0c9b6;
+      --gold: #cf9d3d;
+      --success: #2f855a;
+      --danger: #b83232;
+      --text: #1f2937;
+      --muted: #5f6b63;
+      --cream: #fbf5ea;
+      --paper: rgba(255, 251, 245, 0.94);
+      --border: rgba(152, 126, 96, 0.22);
+      --shadow: 0 18px 45px rgba(61, 42, 24, 0.14);
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(201, 115, 79, 0.22), transparent 20%),
+        radial-gradient(circle at 88% 18%, rgba(75, 107, 67, 0.2), transparent 24%),
+        radial-gradient(circle at 82% 82%, rgba(207, 157, 61, 0.18), transparent 22%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.18) 0 12px, rgba(255,255,255,0.04) 12px 24px),
+        linear-gradient(135deg, #f3eadc, #f8f3ea 45%, #efe4d1);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image:
+        radial-gradient(circle at 20px 20px, rgba(75,107,67,0.16) 0 2px, transparent 2px),
+        radial-gradient(circle at 70px 55px, rgba(201,115,79,0.16) 0 2px, transparent 2px),
+        linear-gradient(45deg, transparent 0 48%, rgba(207,157,61,0.1) 48% 52%, transparent 52% 100%);
+      background-size: 90px 90px, 90px 90px, 120px 120px;
+      mix-blend-mode: multiply;
+    }
+    .container { max-width: 1120px; margin: auto; padding: 20px; position: relative; z-index: 1; }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 24px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -35px -35px auto;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(201,115,79,0.16), transparent 68%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hidden { display: none; }
+    .center { text-align: center; }
+    h1, h2, h3 { margin-top: 0; }
+    h1 { font-size: 34px; letter-spacing: -0.5px; }
+    h2 { color: #2f3a34; }
+    .school-title {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: linear-gradient(135deg, rgba(207,157,61,0.22), rgba(201,115,79,0.2));
+      font-weight: bold;
+      margin-bottom: 12px;
+      border: 1px solid rgba(75,107,67,0.12);
+    }
+    .subject-mark {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(75,107,67,0.08);
+      color: var(--primary-dark);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    input, button {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border-radius: 14px;
+      border: 1px solid #d8cfbf;
+      font-size: 16px;
+    }
+    input { background: rgba(255,255,255,0.95); }
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(201, 115, 79, 0.14);
+    }
+    .password-wrapper { position: relative; width: 100%; }
+    .password-wrapper input { padding-right: 56px; }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 12px;
+      background: transparent;
+      box-shadow: none;
+      color: #6b6158;
+      cursor: pointer;
+    }
+    .toggle-password:hover {
+      filter: none;
+      transform: translateY(-50%);
+      background: rgba(207,157,61,0.12);
+      color: var(--accent);
+    }
+    .toggle-password:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(201, 115, 79, 0.14);
+    }
+    .toggle-password svg { width: 22px; height: 22px; pointer-events: none; }
+    button {
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(101, 78, 49, 0.18);
+      transition: 0.18s ease;
+    }
+    button:hover { filter: brightness(0.98); transform: translateY(-1px); }
+    button.secondary { background: #7a6f65; box-shadow: none; }
+    button.danger { background: #b83232; box-shadow: none; }
+    button.success { background: #2f855a; box-shadow: none; }
+    .topbar { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+    .badge {
+      background: linear-gradient(135deg, #2f4a2b, #4b6b43);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 20px;
+      text-align: center;
+      min-width: 112px;
+    }
+    .meta { color: var(--muted); margin-top: 6px; }
+    .question-number {
+      display: inline-block;
+      color: var(--primary-dark);
+      background: rgba(75,107,67,0.12);
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .question-text { font-size: 20px; line-height: 1.65; margin-bottom: 18px; white-space: pre-line; }
+    .question-image {
+      display: block;
+      max-width: 260px;
+      width: 100%;
+      border-radius: 18px;
+      margin: 8px auto 18px;
+      border: 1px solid rgba(152,126,96,0.28);
+      box-shadow: 0 12px 28px rgba(61, 42, 24, 0.12);
+      background: white;
+      padding: 8px;
+    }
+    .option {
+      display: block;
+      padding: 15px;
+      border: 1px solid #d9cebf;
+      border-radius: 16px;
+      margin: 10px 0;
+      cursor: pointer;
+      background: rgba(255,255,255,0.78);
+      transition: 0.18s;
+    }
+    .option:hover { background: rgba(201,115,79,0.08); border-color: var(--accent); }
+    .option input { width: auto; margin-right: 10px; }
+    .option.selected {
+      background: rgba(201,115,79,0.14);
+      border-color: var(--accent);
+      box-shadow: 0 8px 18px rgba(201, 115, 79, 0.12);
+    }
+    .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+    .nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 8px; }
+    .nav-grid button { padding: 10px; color: #2a2926; background: #ede3d4; box-shadow: none; }
+    .nav-grid button.answered { background: #2f855a; color: white; }
+    .nav-grid button.active { background: linear-gradient(135deg, var(--accent), var(--gold)); color: white; }
+    .result-box {
+      background: linear-gradient(135deg, rgba(207,157,61,0.16), rgba(75,107,67,0.12), rgba(201,115,79,0.14));
+      padding: 24px;
+      border-radius: 20px;
+      margin: 18px 0;
+      font-size: 34px;
+      font-weight: bold;
+      color: #1f2b23;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .summary-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(152,126,96,0.18);
+    }
+    .summary-item strong { display: block; font-size: 22px; margin-top: 4px; }
+    .result-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .note {
+      background: #fff5e8;
+      border: 1px solid #f0cf9f;
+      color: #9a5826;
+      padding: 12px;
+      border-radius: 14px;
+      margin-top: 12px;
+      text-align: left;
+    }
+    .status { color: var(--muted); font-weight: bold; min-height: 24px; }
+    .review-list { text-align: left; margin-top: 18px; }
+    .review-item {
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(152,126,96,0.18);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .review-item.correct { border-left: 6px solid #2f855a; }
+    .review-item.wrong { border-left: 6px solid #b83232; }
+    .review-title { font-weight: 700; margin-bottom: 8px; }
+    .review-meta { color: #475569; line-height: 1.6; }
+    .footer-note { font-size: 13px; color: var(--muted); margin-top: 16px; }
+    @media (max-width: 720px) {
+      .topbar, .actions, .result-actions, .summary-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 28px; }
+      .question-text { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="accessPage" class="card center">
+      <div class="hero-badge">Akses Ujian</div>
+      <div class="subject-mark">CBT SAS 2 Seni Rupa</div>
+      <h1>CBT SAS 2 Seni Rupa</h1>
+      <h2>Kelas 6 SD</h2>
+      <p>Masukkan kode akses untuk melanjutkan ke halaman identitas siswa.</p>
+      <div class="password-wrapper">
+        <input id="accessCodeInput" type="password" placeholder="Masukkan kode akses" autocomplete="off" />
+        <button type="button" class="toggle-password" onclick="toggleAccessCode()" aria-label="Tampilkan kode akses">
+          <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </button>
+      </div>
+      <button onclick="checkAccessCode()">Masuk</button>
+      <p class="status" id="accessStatus"></p>
+    </div>
+
+    <div id="loginPage" class="card center hidden">
+      <div class="school-title">
+        PEMERINTAH KABUPATEN SAMPANG<br>
+        DINAS PENDIDIKAN<br>
+        UPTD SD NEGERI TAMANSAREH 1<br>
+        DESA TAMANSAREH, KECAMATAN SAMPANG
+      </div>
+      <div class="hero-badge">Identitas Peserta</div>
+      <div class="subject-mark">Nuansa visual dibuat lebih artistik</div>
+      <h1>CBT SAS 2 Seni Rupa</h1>
+      <h2>Kelas 6 SD</h2>
+      <p>Waktu: 90 menit | Jumlah soal: <span id="totalQuestionText"></span></p>
+      <input id="studentName" type="text" placeholder="Nama siswa" autocomplete="off" />
+      <input id="studentNumber" type="text" placeholder="No. absen" autocomplete="off" />
+      <input id="studentClass" type="text" placeholder="Kelas, contoh: 6A" autocomplete="off" />
+      <button onclick="startExam()">Mulai Ujian</button>
+    </div>
+
+    <div id="examPage" class="hidden">
+      <div class="card topbar">
+        <div>
+          <h2>CBT SAS 2 Seni Rupa</h2>
+          <div class="meta" id="studentInfo"></div>
+        </div>
+        <div class="badge" id="timer">90:00</div>
+      </div>
+
+      <div class="card">
+        <div class="question-number" id="questionTitle"></div>
+        <div class="question-text" id="questionText"></div>
+        <img id="questionImage" class="question-image hidden" alt="Ilustrasi soal" />
+        <div id="options"></div>
+        <div class="actions">
+          <button class="secondary" onclick="prevQuestion()">Sebelumnya</button>
+          <button onclick="nextQuestion()">Berikutnya</button>
+          <button class="danger" onclick="finishExam(false)">Selesai</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Navigasi Soal</h3>
+        <div class="nav-grid" id="questionNav"></div>
+      </div>
+    </div>
+
+    <div id="resultPage" class="card hidden center">
+      <div class="hero-badge">Hasil Ujian</div>
+      <h1>Terima kasih</h1>
+      <p id="resultIdentity"></p>
+      <div class="result-box" id="scoreBox"></div>
+      <div class="summary-grid">
+        <div class="summary-item">Jawaban Benar<strong id="correctCount">0</strong></div>
+        <div class="summary-item">Jawaban Salah<strong id="wrongCount">0</strong></div>
+        <div class="summary-item">Belum Dijawab<strong id="blankCount">0</strong></div>
+      </div>
+      <p class="status" id="sheetStatus">Mengirim hasil ke Google Sheet...</p>
+      <div class="result-actions">
+        <button onclick="toggleReview()">Lihat Kunci Jawaban</button>
+        <button onclick="window.print()">Cetak Hasil</button>
+      </div>
+      <div id="reviewSection" class="hidden review-list"></div>
+      <div class="footer-note">Template tetap mirip versi sebelumnya, tetapi warna dan nuansa sudah diubah agar lebih cocok untuk tema Seni Rupa.</div>
+    </div>
+  </div>
+
+  <script>
+    const ACCESS_CODE = "SR123";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz15ma8lDvxQVgGuLdeODjMmIAWgTSQ-d4AyEiY74RZdb9AgnsrYJeh0MOkJ78J4-hkQQ/exec";
+    const questions = [{"text": "Unsur seni rupa yang berupa goresan memanjang disebut ...", "options": {"A": "Warna", "B": "Garis", "C": "Bentuk", "D": "Tekstur"}, "answer": "B"}, {"text": "Warna yang dihasilkan dari pencampuran dua warna primer disebut ...", "options": {"A": "Warna tersier", "B": "Warna sekunder", "C": "Warna netral", "D": "Warna panas"}, "answer": "B"}, {"text": "Contoh karya seni rupa dua dimensi adalah ...", "options": {"A": "Patung", "B": "Keramik", "C": "Lukisan", "D": "Ukiran"}, "answer": "C"}, {"text": "Ragam hias adalah bentuk karya seni rupa yang dibuat untuk memperindah suatu benda. Ragam hias biasanya memiliki pola tertentu. Yang termasuk ragam hias adalah ...", "options": {"A": "Lukisan pemandangan alam", "B": "Ukiran pada meja kayu", "C": "Patung manusia", "D": "Foto keluarga"}, "answer": "B"}, {"text": "Ragam hias figuratif biasanya menggambarkan ...", "options": {"A": "Bentuk tumbuhan", "B": "Bentuk hewan", "C": "Bentuk manusia", "D": "Bentuk bangunan"}, "answer": "C"}, {"text": "Contoh karya seni rupa tiga dimensi adalah ...", "options": {"A": "Poster", "B": "Patung", "C": "Gambar", "D": "Lukisan"}, "answer": "B"}, {"text": "Perhatikan kegiatan berikut!\n(1) Menggambar pola\n(2) Memberi warna\n(3) Menentukan bahan\n(4) Menghapus gambar\n\nLangkah yang tepat dalam membuat ragam hias adalah ...", "options": {"A": "(1) - (2) - (3)", "B": "(3) - (1) - (2)", "C": "(4) - (1) - (2)", "D": "(2) - (3) - (1)"}, "answer": "B"}, {"text": "Perhatikan kegiatan berikut!\n(1) Membuat vas bunga dari botol bekas\n(2) Membuat tas dari bungkus kopi\n(3) Membakar sampah plastik\n(4) Membuat hiasan dari kardus\n\nKegiatan yang termasuk karya seni dari limbah adalah ...", "options": {"A": "(1), (2), dan (4)", "B": "(1), (2), dan (3)", "C": "(2), (3), dan (4)", "D": "(1), (3), dan (4)"}, "answer": "A"}, {"text": "Keseimbangan dalam karya seni berarti ...", "options": {"A": "Warna sama", "B": "Ukuran sama", "C": "Seimbang antara bagian satu dan lainnya", "D": "Banyak warna"}, "answer": "C"}, {"text": "Ruang dalam seni rupa berarti ...", "options": {"A": "Jarak antar objek", "B": "Warna objek", "C": "Bentuk objek", "D": "Tekstur objek"}, "answer": "A"}, {"text": "Teknik arsir digunakan untuk ...", "options": {"A": "Memberi warna", "B": "Memberi bayangan", "C": "Menghapus gambar", "D": "Menggaris"}, "answer": "B"}, {"text": "Campuran warna merah dan kuning menghasilkan ...", "options": {"A": "Hijau", "B": "Biru", "C": "Oranye", "D": "Ungu"}, "answer": "C"}, {"text": "Prinsip irama dalam seni rupa ditunjukkan dengan ...", "options": {"A": "Pengulangan bentuk", "B": "Perbedaan warna", "C": "Ukuran besar", "D": "Bentuk acak"}, "answer": "A"}, {"text": "Bahan membuat patung adalah ...", "options": {"A": "Kertas", "B": "Tanah liat", "C": "Pensil", "D": "Tinta"}, "answer": "B"}, {"text": "Gambar pemandangan termasuk karya ...", "options": {"A": "3 dimensi", "B": "2 dimensi", "C": "Campuran", "D": "Abstrak"}, "answer": "B"}, {"text": "Proporsi dalam seni rupa berkaitan dengan ...", "options": {"A": "Warna", "B": "Ukuran perbandingan", "C": "Tekstur", "D": "Garis"}, "answer": "B"}, {"text": "Sebuah motif berbentuk segitiga, lingkaran, dan garis yang tersusun berulang. Motif tersebut termasuk ragam hias ...", "options": {"A": "Flora", "B": "Fauna", "C": "Geometris", "D": "Figuratif"}, "answer": "C"}, {"text": "Ragam hias fauna biasanya mengambil inspirasi dari ...", "options": {"A": "Tumbuhan", "B": "Hewan", "C": "Manusia", "D": "Bangunan"}, "answer": "B"}, {"text": "Motif batik yang menggambarkan burung, ikan, atau kupu-kupu termasuk ragam hias ...", "options": {"A": "Flora", "B": "Geometris", "C": "Fauna", "D": "Figuratif"}, "answer": "C"}, {"text": "Kegiatan menilai karya seni disebut ...", "options": {"A": "Kreasi", "B": "Apresiasi", "C": "Produksi", "D": "Imajinasi"}, "answer": "B"}, {"text": "Gambar di samping merupakan ragam hias ...", "options": {"A": "Fauna", "B": "Figuratif", "C": "Flora", "D": "Geometris"}, "answer": "D", "image": "data:image/jpeg;base64,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"}, {"text": "Ragam hias geometris terdiri dari gabungan ...", "options": {"A": "Titik, garis, bidang", "B": "Segitiga, lingkaran, bentuk malam", "C": "Binatang, tumbuhan, manusia", "D": "Manusia dan bangun ruang"}, "answer": "A"}, {"text": "Keseimbangan di mana belahan kiri gambar merupakan cerminan dari belahan kanan gambar merupakan keseimbangan ...", "options": {"A": "Asimetris", "B": "Diagonal", "C": "Sumbu", "D": "Simetris"}, "answer": "D"}, {"text": "Unsur seni rupa yang menunjukkan permukaan benda disebut ...", "options": {"A": "Garis", "B": "Bentuk", "C": "Tekstur", "D": "Ruang"}, "answer": "C"}, {"text": "Karya seni yang memiliki panjang, lebar, dan tinggi disebut ...", "options": {"A": "Dua dimensi", "B": "Tiga dimensi", "C": "Seni lukis", "D": "Seni grafis"}, "answer": "B"}, {"text": "Campuran warna biru dan kuning menghasilkan warna ...", "options": {"A": "Ungu", "B": "Hijau", "C": "Oranye", "D": "Merah"}, "answer": "B"}, {"text": "Ragam hias yang terinspirasi dari bentuk tumbuhan seperti daun, bunga, dan batang disebut ragam hias ...", "options": {"A": "Geometris", "B": "Figuratif", "C": "Flora", "D": "Fauna"}, "answer": "C"}, {"text": "Kegiatan menilai dan menghargai karya seni disebut ...", "options": {"A": "Kreasi", "B": "Imajinasi", "C": "Produksi", "D": "Apresiasi"}, "answer": "D"}, {"text": "Limbah rumah tangga dapat dimanfaatkan menjadi karya seni yang bernilai guna dan estetis. Yang termasuk limbah rumah tangga adalah ...", "options": {"A": "Kayu dari hutan", "B": "Botol plastik bekas minuman", "C": "Batu alam", "D": "Air sungai"}, "answer": "B"}, {"text": "Berikut ini yang merupakan unsur seni rupa adalah ...", "options": {"A": "Irama", "B": "Keseimbangan", "C": "Warna", "D": "Proporsi"}, "answer": "C"}];
+
+    let currentQuestion = 0;
+    let answers = Array(questions.length).fill(null);
+    let studentName = "";
+    let studentNumber = "";
+    let studentClass = "";
+    let timeLeft = 90 * 60;
+    let timerInterval;
+    let finished = false;
+
+    document.getElementById("totalQuestionText").innerText = questions.length;
+
+    function toggleAccessCode() {
+      const input = document.getElementById("accessCodeInput");
+      const button = document.querySelector(".toggle-password");
+      const eyeIcon = document.getElementById("eyeIcon");
+
+      if (input.type === "password") {
+        input.type = "text";
+        button.setAttribute("aria-label", "Sembunyikan kode akses");
+        eyeIcon.innerHTML = `
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19C5.5 19 2 12 2 12a20.29 20.29 0 0 1 5.06-5.94"></path>
+          <path d="M9.9 4.24A10.82 10.82 0 0 1 12 4.99C18.5 5 22 12 22 12a20.25 20.25 0 0 1-2.16 3.19"></path>
+          <path d="M14.12 14.12a3 3 0 0 1-4.24-4.24"></path>
+          <path d="M1 1l22 22"></path>
+        `;
+      } else {
+        input.type = "password";
+        button.setAttribute("aria-label", "Tampilkan kode akses");
+        eyeIcon.innerHTML = `
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        `;
+      }
+      input.focus();
+    }
+
+    function checkAccessCode() {
+      const input = document.getElementById("accessCodeInput").value.trim();
+      const status = document.getElementById("accessStatus");
+      if (input === ACCESS_CODE) {
+        document.getElementById("accessPage").classList.add("hidden");
+        document.getElementById("loginPage").classList.remove("hidden");
+        status.innerText = "";
+      } else {
+        status.innerText = "Kode akses salah.";
+      }
+    }
+
+    document.getElementById("accessCodeInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") checkAccessCode();
+    });
+
+    function startExam() {
+      studentName = document.getElementById("studentName").value.trim();
+      studentNumber = document.getElementById("studentNumber").value.trim();
+      studentClass = document.getElementById("studentClass").value.trim();
+
+      if (!studentName || !studentNumber || !studentClass) {
+        alert("Nama, nomor absen, dan kelas wajib diisi.");
+        return;
+      }
+
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("examPage").classList.remove("hidden");
+      document.getElementById("studentInfo").innerText = `Nama: ${studentName} | No. Absen: ${studentNumber} | Kelas: ${studentClass}`;
+      renderQuestion();
+      renderNav();
+      startTimer();
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById("timer").innerText = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          finishExam(true);
+        }
+      }, 1000);
+    }
+
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("questionTitle").innerText = `Soal ${currentQuestion + 1} dari ${questions.length}`;
+      document.getElementById("questionText").innerText = q.text;
+
+      const imageEl = document.getElementById("questionImage");
+      if (q.image) {
+        imageEl.src = q.image;
+        imageEl.classList.remove("hidden");
+      } else {
+        imageEl.classList.add("hidden");
+        imageEl.removeAttribute("src");
+      }
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      Object.keys(q.options).forEach(key => {
+        const label = document.createElement("label");
+        label.className = "option" + (answers[currentQuestion] === key ? " selected" : "");
+        label.innerHTML = `
+          <input type="radio" name="answer" value="${key}" ${answers[currentQuestion] === key ? "checked" : ""}>
+          <strong>${key}.</strong> ${q.options[key]}
+        `;
+        label.onclick = () => {
+          answers[currentQuestion] = key;
+          renderQuestion();
+          renderNav();
+        };
+        optionsDiv.appendChild(label);
+      });
+      renderNav();
+    }
+
+    function renderNav() {
+      const nav = document.getElementById("questionNav");
+      nav.innerHTML = "";
+      questions.forEach((_, index) => {
+        const btn = document.createElement("button");
+        btn.innerText = index + 1;
+        if (answers[index]) btn.classList.add("answered");
+        if (index === currentQuestion) btn.classList.add("active");
+        btn.onclick = () => {
+          currentQuestion = index;
+          renderQuestion();
+        };
+        nav.appendChild(btn);
+      });
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuestion();
+      }
+    }
+
+    function finishExam(auto = false) {
+      if (finished) return;
+      if (!auto) {
+        const unanswered = answers.filter(a => a === null).length;
+        const confirmFinish = confirm(`Masih ada ${unanswered} soal belum dijawab. Yakin selesai?`);
+        if (!confirmFinish) return;
+      }
+
+      finished = true;
+      clearInterval(timerInterval);
+
+      let correct = 0;
+      let blank = 0;
+      questions.forEach((q, i) => {
+        if (answers[i] === null) blank++;
+        if (answers[i] === q.answer) correct++;
+      });
+      const wrong = questions.length - correct - blank;
+      const score = Math.round((correct / questions.length) * 100);
+
+      const resultData = {
+        mapel: "Seni Rupa",
+        nama: studentName,
+        noAbsen: studentNumber,
+        kelas: studentClass,
+        nilai: score,
+        benar: correct,
+        salah: wrong,
+        kosong: blank
+      };
+
+      localStorage.setItem("hasilCBTSeniRupa", JSON.stringify(resultData));
+
+      document.getElementById("examPage").classList.add("hidden");
+      document.getElementById("resultPage").classList.remove("hidden");
+      document.getElementById("resultIdentity").innerText = `Nama: ${studentName} | No. Absen: ${studentNumber} | Kelas: ${studentClass}`;
+      document.getElementById("scoreBox").innerHTML = `Nilai: ${score}`;
+      document.getElementById("correctCount").innerText = correct;
+      document.getElementById("wrongCount").innerText = wrong;
+      document.getElementById("blankCount").innerText = blank;
+      buildReview();
+      sendToGoogleSheet(resultData);
+    }
+
+    function buildReview() {
+      const reviewSection = document.getElementById("reviewSection");
+      reviewSection.innerHTML = "";
+      questions.forEach((q, i) => {
+        const userAnswer = answers[i] || "-";
+        const isCorrect = answers[i] === q.answer;
+        const item = document.createElement("div");
+        item.className = `review-item ${isCorrect ? "correct" : "wrong"}`;
+        item.innerHTML = `
+          <div class="review-title">Soal ${i + 1}</div>
+          <div class="review-meta">
+            <div><strong>Pertanyaan:</strong> ${q.text.replace(/
+/g, '<br>')}</div>
+            <div><strong>Jawaban kamu:</strong> ${userAnswer}${userAnswer !== '-' ? `. ${q.options[userAnswer] || ''}` : ''}</div>
+            <div><strong>Kunci jawaban:</strong> ${q.answer}. ${q.options[q.answer]}</div>
+            <div><strong>Status:</strong> ${isCorrect ? 'Benar' : 'Perlu diperbaiki'}</div>
+          </div>
+        `;
+        reviewSection.appendChild(item);
+      });
+    }
+
+    function toggleReview() {
+      document.getElementById("reviewSection").classList.toggle("hidden");
+    }
+
+    function sendToGoogleSheet(data) {
+      const statusEl = document.getElementById("sheetStatus");
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === "PASTE_URL_APPS_SCRIPT_DI_SINI") {
+        statusEl.innerText = "Google Sheet belum disambungkan. Isi GOOGLE_SCRIPT_URL dulu di kode.";
+        return;
+      }
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        statusEl.innerText = "Hasil sudah dikirim ke Google Sheet.";
+      })
+      .catch(() => {
+        statusEl.innerText = "Gagal mengirim ke Google Sheet. Cek koneksi atau URL Apps Script.";
+      });
+    }
+  </script>
+</body>
+</html>
